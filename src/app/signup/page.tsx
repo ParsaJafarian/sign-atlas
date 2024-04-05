@@ -1,3 +1,5 @@
+import { AuthenticationImage } from "@/components/AuthenticationImage";
+
 export default function SignUp() {
-  return <h1>Sign up page</h1>;
+  return <AuthenticationImage />;
 }
