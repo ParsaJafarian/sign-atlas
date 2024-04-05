@@ -1,5 +1,7 @@
 data/*
+exported_model/*
 
+!exported_model/gesture_recognizer.task
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
