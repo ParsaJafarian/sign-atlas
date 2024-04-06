@@ -10,17 +10,30 @@ import User from "./models/User";
 //Seed Courses
 const courses = [
     {
-        title: "From A to J",
+        title: "From A to M",
         description: "Learn the American Sign Language alphabet from A to M!",
-        lessons: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"],
-    },
-    {
-        title: "From J to Z",
-        description: "Learn the American Sign Language alphabet from N to Z!",
         lessons: [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
             "k",
             "l",
-            "m",
+            "m"
+        ],
+        courseEndpoint: "a-m",
+        testEndpoint: "a-m",
+    },
+    {
+        title: "From N to Z",
+        description: "Learn the American Sign Language alphabet from N to Z!",
+        lessons: [
             "n",
             "o",
             "p",
@@ -35,6 +48,8 @@ const courses = [
             "y",
             "z"
         ],
+        courseEndpoint: "n-z",
+        testEndpoint: "n-z"
     },
 ];
 

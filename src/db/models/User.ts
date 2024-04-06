@@ -9,6 +9,17 @@ import Course from './Course';
 //connect to the database
 connectDB();
 
+export interface DetailedEnrollment {
+    _id: string;
+    title: string;
+    description: string;
+    lessons: string[];
+    completedLessons: string[];
+    __v: number;
+    courseEndpoint: string;
+    testEndpoint: string;
+}
+
 export interface IUser extends mongoose.Document {
     name: string;
     email: string;
@@ -19,6 +30,7 @@ export interface IUser extends mongoose.Document {
     getProgress(courseId: string): Promise<number>;
     addEnrollment(courseId: string): Promise<void>;
     isEnrolledIn(courseId: string): boolean;
+    getDetailedEnrollments(): Promise<DetailedEnrollment[]>;
 }
 
 const userSchema = new mongoose.Schema<IUser>({
@@ -129,6 +141,17 @@ userSchema.methods.addEnrollment = async function (this: IUser, courseId: string
 userSchema.methods.completeLessons = function (this: IUser, courseId: string, lessons: string[]) {
     const enrollment = this.getEnrollmentByCourseId(courseId);
     enrollment.completedLessons = lessons;
+}
+
+userSchema.methods.getDetailedEnrollments = async function (this: IUser) {
+    const enrollments = Promise.all(this.enrollments.map(async enrollment => {
+        const course = await Course.findById(enrollment.course);
+        return {
+            ...course.toObject(),
+            completedLessons: enrollment.completedLessons
+        };
+    }));
+    return enrollments;
 }
 
 const User = mongoose.models?.User || mongoose.model<IUser>("User", userSchema);

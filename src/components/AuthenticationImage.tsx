@@ -13,6 +13,7 @@ import Link from "next/link";
 import { useForm } from "@mantine/form";
 import { useRouter } from "next/navigation";
 import { login } from "@/lib/auth";
+import { postDataTo } from "@/lib/fetches";
 
 export function AuthenticationImage({ isLogin }: { isLogin: boolean }) {
   const router = useRouter();
@@ -30,22 +31,16 @@ export function AuthenticationImage({ isLogin }: { isLogin: boolean }) {
     },
   });
 
+  const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    await postDataTo("/api/users", form.values)
+    router.push("/");
+  };
+
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await login(form.values);
     window.location.replace("/");
-  }
-
-  const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    await fetch("/api/users", {
-      method: "POST",
-      body: JSON.stringify(form.values),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    router.push("/");
   };
 
   return (
