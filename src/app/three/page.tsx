@@ -27,7 +27,7 @@ export default function Three() {
   return (
     <Paper h="90vh">
       <Canvas camera={{ fov: 90 }}>
-        <Scene letter={"a"} />
+        <Scene letter={"h"} />
         <CameraControls
           ref={(ref) => {
             cameraRef.current = ref;
