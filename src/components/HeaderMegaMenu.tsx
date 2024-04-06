@@ -9,6 +9,7 @@ import {
   Drawer,
   ScrollArea,
   rem,
+  Image,
 } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
 import { useDisclosure } from "@mantine/hooks";
@@ -24,7 +25,7 @@ export function HeaderMegaMenu() {
     <Box>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
-          <MantineLogo size={30} />
+          <Image src="logo.png" h="100%" alt="logo" />
 
           <Group h="100%" gap={0} visibleFrom="sm">
             <Link href="/" className={classes.link}>
