@@ -12,6 +12,7 @@ import classes from "./AuthenticationImage.module.css";
 import Link from "next/link";
 import { useForm } from "@mantine/form";
 import { useRouter } from "next/navigation";
+import { login } from "@/lib/auth";
 
 export function AuthenticationImage({ isLogin }: { isLogin: boolean }) {
   const router = useRouter();
@@ -29,6 +30,12 @@ export function AuthenticationImage({ isLogin }: { isLogin: boolean }) {
     },
   });
 
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    await login(form.values);
+    window.location.replace("/");
+  }
+
   const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await fetch("/api/users", {
@@ -42,7 +49,7 @@ export function AuthenticationImage({ isLogin }: { isLogin: boolean }) {
   };
 
   return (
-    <form method="post" onSubmit={handleSignup} className={classes.wrapper}>
+    <form method="post" onSubmit={isLogin ? handleLogin : handleSignup} className={classes.wrapper}>
       <Paper className={classes.form} radius={0} p={30}>
         <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
           {isLogin ? "Log in to Sign Atlas!" : "Sign up to Sign Atlas"}
