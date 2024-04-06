@@ -29,12 +29,9 @@ export function HeaderMegaMenu() {
             <Link href="/" className={classes.link}>
               Home
             </Link>
-            <a href="#" className={classes.link}>
-              Learn
-            </a>
-            <a href="#" className={classes.link}>
-              Academy
-            </a>
+            <Link href="/courses" className={classes.link}>
+              Courses
+            </Link>
           </Group>
 
           <Group visibleFrom="sm">
