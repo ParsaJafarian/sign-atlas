@@ -1,5 +1,7 @@
+"use client";
+
 import { AuthenticationImage } from "@/components/AuthenticationImage";
 
 export default function SignUp() {
-  return <AuthenticationImage />;
+  return <AuthenticationImage isLogin={false} />;
 }

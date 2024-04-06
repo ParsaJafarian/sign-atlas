@@ -26,9 +26,9 @@ export function HeaderMegaMenu() {
           <MantineLogo size={30} />
 
           <Group h="100%" gap={0} visibleFrom="sm">
-            <a href="#" className={classes.link}>
+            <Link href="/" className={classes.link}>
               Home
-            </a>
+            </Link>
             <a href="#" className={classes.link}>
               Learn
             </a>
