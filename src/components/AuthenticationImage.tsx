@@ -103,7 +103,6 @@ export function AuthenticationImage({ isLogin }: AuthenticationImageProps) {
           }
           name="password"
         />
-        <Checkbox label="Keep me logged in" mt="xl" size="md" />
         <Button fullWidth mt="xl" size="md" type="submit">
           {isLogin ? "Login" : "Sign Up"}
         </Button>

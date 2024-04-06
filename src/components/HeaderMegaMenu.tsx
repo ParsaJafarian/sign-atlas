@@ -14,6 +14,7 @@ import { MantineLogo } from "@mantinex/mantine-logo";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./HeaderMegaMenu.module.css";
 import Link from "next/link";
+import AuthenticationButton from "./AuthenticationButton";
 
 export function HeaderMegaMenu() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
@@ -34,14 +35,7 @@ export function HeaderMegaMenu() {
             </Link>
           </Group>
 
-          <Group visibleFrom="sm">
-            <Link href="/login">
-              <Button variant="default">Log in</Button>
-            </Link>
-            <Link href="/signup">
-              <Button>Sign up</Button>
-            </Link>
-          </Group>
+          <AuthenticationButton />
 
           <Burger
             opened={drawerOpened}
