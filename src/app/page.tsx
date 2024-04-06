@@ -72,7 +72,7 @@ export default function Home() {
               <Button radius="xl" size="md" className={classes.control} >
                 Get started
               </Button>
-            </Link>
+            </Link >
           </Group>
         </div>
         <Image
