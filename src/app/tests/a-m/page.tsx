@@ -197,24 +197,24 @@ export default function Page() {
                     sentence === ""
                       ? undefined
                       : sentence !== currentLetter
-                      ? "red"
-                      : "green",
+                        ? "red"
+                        : "green",
                   color:
                     sentence === ""
                       ? undefined
                       : sentence !== currentLetter
-                      ? "red"
-                      : "green",
+                        ? "red"
+                        : "green",
                   textDecoration: "underline",
                 }}
                 className={
                   sentence === ""
                     ? undefined
                     : isWrong
-                    ? styles.shakeWrong
-                    : sentence === currentLetter
-                    ? styles.shakeCorrect
-                    : undefined
+                      ? styles.shakeWrong
+                      : sentence === currentLetter
+                        ? styles.shakeCorrect
+                        : undefined
                 }
               >
                 <Text

@@ -1,91 +1,81 @@
 {
-	"asset":{
-		"generator":"Khronos glTF Blender I/O v4.1.62",
-		"version":"2.0"
-	},
-	"scene":0,
-	"scenes":[
-		{
-			"name":"Scene",
-			"nodes":[
-				0
-			]
-		}
-	],
-	"nodes":[
-		{
-			"mesh":0,
-			"name":"abb P print"
-		}
-	],
-	"meshes":[
-		{
-			"name":"abb P print",
-			"primitives":[
-				{
-					"attributes":{
-						"POSITION":0,
-						"NORMAL":1
-					},
-					"indices":2
-				}
-			]
-		}
-	],
-	"accessors":[
-		{
-			"bufferView":0,
-			"componentType":5126,
-			"count":51921,
-			"max":[
-				31.16240692138672,
-				44.27390670776367,
-				70.65542602539062
-			],
-			"min":[
-				-30.730880737304688,
-				-40.63844680786133,
-				-44.960113525390625
-			],
-			"type":"VEC3"
-		},
-		{
-			"bufferView":1,
-			"componentType":5126,
-			"count":51921,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":2,
-			"componentType":5123,
-			"count":311493,
-			"type":"SCALAR"
-		}
-	],
-	"bufferViews":[
-		{
-			"buffer":0,
-			"byteLength":623052,
-			"byteOffset":0,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":623052,
-			"byteOffset":623052,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":622986,
-			"byteOffset":1246104,
-			"target":34963
-		}
-	],
-	"buffers":[
-		{
-			"byteLength":1869092,
-			"uri":"p.bin"
-		}
-	]
+  "asset": {
+    "generator": "Khronos glTF Blender I/O v4.1.62",
+    "version": "2.0"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [0]
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0,
+      "name": "abb P print"
+    }
+  ],
+  "meshes": [
+    {
+      "name": "abb P print",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1
+          },
+          "indices": 2
+        }
+      ]
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 51921,
+      "max": [31.16240692138672, 44.27390670776367, 70.65542602539062],
+      "min": [-30.730880737304688, -40.63844680786133, -44.960113525390625],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 51921,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5123,
+      "count": 311493,
+      "type": "SCALAR"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 623052,
+      "byteOffset": 0,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 623052,
+      "byteOffset": 623052,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 622986,
+      "byteOffset": 1246104,
+      "target": 34963
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 1869092,
+      "uri": "p.bin"
+    }
+  ]
 }

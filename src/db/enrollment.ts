@@ -30,7 +30,7 @@ async function getLessonsValidations(enrollment: Enrollment) {
     lengthMatches,
     uniqueLessons,
   };
-};
+}
 
 export async function validateCompletedLessons(user: IUser) {
   Promise.all(
@@ -51,7 +51,7 @@ export async function validateCompletedLessons(user: IUser) {
         user.invalidate("completedLessons", "Completed lessons must be unique");
     }),
   );
-};
+}
 
 export function validateEnrollmentsUniqueness(user: IUser) {
   //Validate that all courses are unique because a user can't be enrolled in the same course twice
@@ -59,4 +59,4 @@ export function validateEnrollmentsUniqueness(user: IUser) {
   const uniqueCourses = new Set(courseIds).size === courseIds.length;
   if (!uniqueCourses)
     user.invalidate("enrollments", "Enrolled courses must be unique");
-};
+}

@@ -66,7 +66,7 @@ export default function ASLTranslator({
   useEffect(() => {
     const createGestureRecognizer = async () => {
       const vision = await FilesetResolver.forVisionTasks(
-        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm"
+        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm",
       );
       const recognizer = await GestureRecognizer.createFromOptions(vision, {
         baseOptions: {
@@ -130,7 +130,7 @@ export default function ASLTranslator({
           {
             color: "#00FF00",
             lineWidth: 5,
-          }
+          },
         );
         drawingUtils.drawLandmarks(landmarks, {
           color: "#FF0000",
@@ -146,7 +146,7 @@ export default function ASLTranslator({
         if (categoryName === "") categoryName = "Unsure";
 
         const categoryScore = parseFloat(results.gestures[0][0].score).toFixed(
-          2
+          2,
         );
         const handedness = results.handednesses[0][0].displayName;
 
@@ -186,10 +186,12 @@ export default function ASLTranslator({
           ref={canvasRef}
           id="output_canvas"
           className={classes.canvas}
-          style={{
-            // height: videoRef.current?.offsetHeight,
-            // width: videoRef.current?.offsetWidth,
-          }}
+          style={
+            {
+              // height: videoRef.current?.offsetHeight,
+              // width: videoRef.current?.offsetWidth,
+            }
+          }
         ></canvas>
       </Card.Section>
       <Card.Section className={classes.footer}>

@@ -53,7 +53,7 @@ export default function Courses() {
             </Paper>
           </Stack>
         </Card>
-      </Box >
-    </Container >
+      </Box>
+    </Container>
   );
 }

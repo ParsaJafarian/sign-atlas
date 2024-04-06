@@ -11,9 +11,7 @@ export function UserButton() {
   return (
     <UnstyledButton className={classes.user}>
       <Group>
-        <Avatar
-          radius="xl"
-        />
+        <Avatar radius="xl" />
 
         <div style={{ flex: 1 }}>
           <Text size="sm" fw={500}>

@@ -17,7 +17,6 @@ export default function CourseCard({
   courseEndpoint,
   testEndpoint,
 }: CourseCardProps) {
-
   const completedLessons = [lessons[0], lessons[1]];
 
   return (
@@ -62,8 +61,8 @@ export default function CourseCard({
                 index === 0
                   ? "0 0 0 var(--mantine-radius-md)" // Bottom left box
                   : index === lessons.length - 1
-                  ? "0 0 var(--mantine-radius-md) 0" // Bottom right box
-                  : "0", // Middle boxes
+                    ? "0 0 var(--mantine-radius-md) 0" // Bottom right box
+                    : "0", // Middle boxes
             }}
           ></Box>
         ))}

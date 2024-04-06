@@ -3,6 +3,6 @@ import catchAsyncError from "@/lib/catchAsyncError";
 import { NextResponse } from "next/server";
 
 export const GET = catchAsyncError(async (req) => {
-    const courses = await Course.find();
-    return NextResponse.json({ courses}, {status: 200})
+  const courses = await Course.find();
+  return NextResponse.json({ courses }, { status: 200 });
 });

@@ -47,7 +47,8 @@ const courseSchema = new mongoose.Schema<ICourse>({
 
 //If the Course model already exists, use it.
 //Otherwise, create a new Course model using the course schema and ICourse interface
-const Course = mongoose.models?.Course || mongoose.model<ICourse>("Course", courseSchema);
+const Course =
+  mongoose.models?.Course || mongoose.model<ICourse>("Course", courseSchema);
 
 // Export the Course model
 export default Course;

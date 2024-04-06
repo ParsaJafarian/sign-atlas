@@ -39,7 +39,7 @@ export default function CourseId({ params }: { params: { id: string } }) {
 
   const nextStep = () => {
     setActive((current) =>
-      current < lessons.length - 1 ? current + 1 : current
+      current < lessons.length - 1 ? current + 1 : current,
     );
     // setCompletedLessons((prev) => [...prev, lessons[active]]);
     setCompletedLessons((prev) => [...prev, lessons[active]]);
@@ -110,7 +110,9 @@ export default function CourseId({ params }: { params: { id: string } }) {
             >
               Lesson {lessons[active]}
             </Text>
-            <Box style={{ flexGrow: 1 }}>Placeholder for {lessons[active]} 3D Hand model</Box>
+            <Box style={{ flexGrow: 1 }}>
+              Placeholder for {lessons[active]} 3D Hand model
+            </Box>
             {/* <Image
               radius="md"
               src="https://upload.wikimedia.org/wikipedia/commons/2/27/Sign_language_A.svg"

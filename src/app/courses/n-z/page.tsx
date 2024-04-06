@@ -39,7 +39,7 @@ export default function CourseId({ params }: { params: { id: string } }) {
 
   const nextStep = () => {
     setActive((current) =>
-      current < lessons.length - 1 ? current + 1 : current
+      current < lessons.length - 1 ? current + 1 : current,
     );
     // setCompletedLessons((prev) => [...prev, lessons[active]]);
     setCompletedLessons((prev) => [...prev, lessons[active]]);

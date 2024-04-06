@@ -43,7 +43,7 @@ export function AuthenticationImage({ isLogin }: AuthenticationImageProps) {
 
   const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await postDataTo("/api/users", form.values)
+    await postDataTo("/api/users", form.values);
     router.push("/");
   };
 
@@ -51,10 +51,14 @@ export function AuthenticationImage({ isLogin }: AuthenticationImageProps) {
     event.preventDefault();
     await login(form.values);
     window.location.replace("/");
-  }
+  };
 
   return (
-    <form method="post" onSubmit={isLogin ? handleLogin : handleSignup} className={classes.wrapper}>
+    <form
+      method="post"
+      onSubmit={isLogin ? handleLogin : handleSignup}
+      className={classes.wrapper}
+    >
       <Paper className={classes.form} radius={0} p={30}>
         <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
           {isLogin ? "Log in to Sign Atlas!" : "Sign up to Sign Atlas"}

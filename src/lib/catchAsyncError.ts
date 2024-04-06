@@ -6,10 +6,13 @@ import { NextRequest, NextResponse } from "next/server";
  * @returns NextResponse json object containing an error message and a 500 status code
  */
 export default function catchAsyncError(
-  asyncFunc: (req: NextRequest, ...args: any[]) => Promise<any>
+  asyncFunc: (req: NextRequest, ...args: any[]) => Promise<any>,
 ) {
   // Use rest parameters to capture additional arguments
-  return async function (req: NextRequest, ...args: any[]): Promise<NextResponse> {
+  return async function (
+    req: NextRequest,
+    ...args: any[]
+  ): Promise<NextResponse> {
     try {
       // Pass all arguments to the async function
       return await asyncFunc(req, ...args);
