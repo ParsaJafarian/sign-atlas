@@ -48,7 +48,7 @@ export default function Courses() {
       testEndpoint: "a-m",
     },
     {
-      title: "From K to Z",
+      title: "From N to Z",
       description: "Continue learning the American Sign Language from K to Z!",
       lessons: [
         "n",
@@ -85,7 +85,7 @@ export default function Courses() {
                 description={course.description}
                 lessons={course.lessons}
                 completedLessons={course.completedLessons}
-                courseEndpoint={"a-m"}
+                courseEndpoint={course.courseEndpoint}
                 testEndpoint={course.testEndpoint}
               />
             ))}

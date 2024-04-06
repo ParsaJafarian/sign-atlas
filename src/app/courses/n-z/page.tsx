@@ -104,7 +104,7 @@ export default function CourseId({ params }: { params: { id: string } }) {
                 variant="gradient"
                 gradient={{ from: "grape", to: "pink", deg: 90 }}
               >
-                Course A-M
+                Course N-Z
               </Text>
             </Center>
             <Center>
