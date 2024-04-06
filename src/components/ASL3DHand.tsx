@@ -38,7 +38,7 @@ export default function ASL3DHand({ letter }: any) {
   return (
     <Suspense fallback={null}>
       <group ref={handRef} dispose={null}>
-        <Scene letter={letter} />
+        <Scene letter={letter.toLowerCase()} />
       </group>
       <CameraControls
         ref={(ref) => {
