@@ -1,7 +1,6 @@
 import '@mantine/core/styles.css';
 import React from 'react';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
-import connectDB from "@/lib/db";
 
 export const metadata = {
   title: 'Mantine Next.js template',
@@ -9,10 +8,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: any }) {
-
-  //connect to the database
-  connectDB();
-
   return (
     <html lang="en">
       <head>
