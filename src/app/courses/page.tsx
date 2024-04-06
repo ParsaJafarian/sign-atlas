@@ -77,7 +77,7 @@ export default function Courses() {
       <Box mt="lg" h="60%">
         <Title>My courses</Title>
         <ProgressCard mt="md" />
-        <Card radius="md" px="xl" mt="md" withBorder bg="blue">
+        <Card radius="md" px="xl" mt="md" withBorder bg="white">
           <Stack gap="xl" justify="center">
             {mockData.map((course, index) => (
               <CourseCard
@@ -86,7 +86,7 @@ export default function Courses() {
                 description={course.description}
                 lessons={course.lessons}
                 completedLessons={course.completedLessons}
-                courseEndpoint={"a-m"}
+                courseEndpoint={course.courseEndpoint}
                 testEndpoint={course.testEndpoint}
               />
             ))}

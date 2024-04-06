@@ -20,7 +20,7 @@ export default function CourseCard({
   testEndpoint,
 }: CourseCardProps) {
   return (
-    <Paper h="130px" radius="md" shadow="xl" py={0}>
+    <Paper h="130px" radius="md" shadow="xl" py={0} withBorder>
       <Group h="80%" justify="space-between" px="50px">
         <Box>
           <Title order={3}>{title}</Title>
