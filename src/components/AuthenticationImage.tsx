@@ -1,3 +1,6 @@
+"use client";
+
+import React from "react";
 import {
   Paper,
   TextInput,
@@ -10,24 +13,31 @@ import {
 } from "@mantine/core";
 import classes from "./AuthenticationImage.module.css";
 import Link from "next/link";
-import { useForm } from "@mantine/form";
 import { useRouter } from "next/navigation";
+import { useForm } from "@mantine/form";
 import { login } from "@/lib/auth";
 import { postDataTo } from "@/lib/fetches";
 
-export function AuthenticationImage({ isLogin }: { isLogin: boolean }) {
+interface AuthenticationImageProps {
+  isLogin: boolean;
+}
+
+export function AuthenticationImage({ isLogin }: AuthenticationImageProps) {
   const router = useRouter();
 
   const form = useForm({
     initialValues: {
-      email: '',
-      name: '',
-      password: '',
+      email: "",
+      name: "",
+      password: "",
     },
 
     validate: {
-      email: (val) => (/^\S+@\S+$/.test(val) ? null : 'Invalid email'),
-      password: (val) => (val.length <= 6 ? 'Password should include at least 6 characters' : null),
+      email: (val) => (/^\S+@\S+$/.test(val) ? null : "Invalid email"),
+      password: (val) =>
+        val.length <= 6
+          ? "Password should include at least 6 characters"
+          : null,
     },
   });
 
@@ -41,7 +51,7 @@ export function AuthenticationImage({ isLogin }: { isLogin: boolean }) {
     event.preventDefault();
     await login(form.values);
     window.location.replace("/");
-  };
+  }
 
   return (
     <form method="post" onSubmit={isLogin ? handleLogin : handleSignup} className={classes.wrapper}>
@@ -52,27 +62,49 @@ export function AuthenticationImage({ isLogin }: { isLogin: boolean }) {
 
         {!isLogin && (
           <TextInput
+            required
             label="Name"
             placeholder="Your name"
+            value={form.values.name}
+            onChange={(event) =>
+              form.setFieldValue("name", event.currentTarget.value)
+            }
             size="md"
             name="name"
           />
         )}
 
         <TextInput
+          required
           label="Email address"
           placeholder="hello@gmail.com"
+          value={form.values.email}
+          onChange={(event) =>
+            form.setFieldValue("email", event.currentTarget.value)
+          }
+          error={form.errors.email && "Invalid email"}
           mt="md"
           size="md"
+          name="email"
         />
         <PasswordInput
+          required
           label="Password"
           placeholder="Your password"
           mt="md"
           size="md"
+          value={form.values.password}
+          onChange={(event) =>
+            form.setFieldValue("password", event.currentTarget.value)
+          }
+          error={
+            form.errors.password &&
+            "Password should include at least 6 characters"
+          }
+          name="password"
         />
         <Checkbox label="Keep me logged in" mt="xl" size="md" />
-        <Button fullWidth mt="xl" size="md">
+        <Button fullWidth mt="xl" size="md" type="submit">
           {isLogin ? "Login" : "Sign Up"}
         </Button>
 
