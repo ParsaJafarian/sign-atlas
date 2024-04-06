@@ -13,6 +13,7 @@ import {
 } from "@mantine/core";
 import { IconCheck } from "@tabler/icons-react";
 import classes from "./HeroBullets.module.css";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -67,9 +68,11 @@ export default function Home() {
           </List>
 
           <Group mt={50}>
-            <Button radius="xl" size="md" className={classes.control}>
-              Get started
-            </Button>
+            <Link href="/courses">
+              <Button radius="xl" size="md" className={classes.control} >
+                Get started
+              </Button>
+            </Link>
           </Group>
         </div>
         <Image
