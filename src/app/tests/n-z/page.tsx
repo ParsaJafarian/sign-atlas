@@ -124,20 +124,23 @@ export default function Page() {
   return (
     <Container h="89vh">
       <Flex
-        mih={50}
+        mah={"100%"}
         gap={rem(100)}
         justify="center"
         align="flex-start"
         direction="row"
         wrap="nowrap"
-        style={{ marginTop: "20px" }}
+        style={{ paddingTop: "30px", overflow: "hidden" }}
       >
         <Box pr="5rem" style={{ overflow: "hidden" }}>
           <Timeline
             active={active}
             bulletSize={24}
             lineWidth={2}
-            style={{ transform: `translateY(-${active * 60}px)` }}
+            style={{
+              transition: "all 1.5s",
+              transform: `translateY(-${active * 60}px)`,
+            }}
           >
             {lessons.map((lesson, index) => (
               <Timeline.Item

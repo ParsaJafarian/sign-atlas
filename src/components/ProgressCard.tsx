@@ -11,7 +11,7 @@ export function ProgressCard(props: BoxProps) {
       {...props}
     >
       <Text fz="xs" tt="uppercase" fw={700} c="dimmed">
-        Progress
+        Progress (WIP)
       </Text>
       <Text fz="lg" fw={500}>
         54%

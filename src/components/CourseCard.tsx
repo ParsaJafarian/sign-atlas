@@ -1,5 +1,7 @@
-import { Box, Button, Group, Paper, Text, Title } from "@mantine/core";
-
+import { Box, Button, Center, Group, Paper, Text, Title } from "@mantine/core";
+import { IconBrain } from "@tabler/icons-react";
+import classes from "./CourseCard.module.css";
+import Link from "next/link";
 interface CourseCardProps {
   title: string;
   description: string;
@@ -18,17 +20,51 @@ export default function CourseCard({
   testEndpoint,
 }: CourseCardProps) {
   return (
-    <Paper mih="130px" radius="md" shadow="xl" py={0}>
+    <Paper h="130px" radius="md" shadow="xl" py={0}>
       <Group h="80%" justify="space-between" px="50px">
         <Box>
           <Title order={3}>{title}</Title>
           <Text>{description}</Text>
         </Box>
-        <Button w="100px">Start</Button>
+        <Center style={{ gap: "20px" }}>
+          <Link href={"/courses/" + courseEndpoint}>
+            <Button
+              size="lg"
+              variant="gradient"
+              gradient={{ from: "pink", to: "cyan", deg: 90 }}
+              className={classes.buttonHoverShadow}
+            >
+              Start
+            </Button>
+          </Link>
+          <Link href={"/tests/" + testEndpoint}>
+            <Button
+              size="lg"
+              rightSection={<IconBrain size={14} />}
+              variant="gradient"
+              gradient={{ from: "cyan", to: "grape", deg: 90 }}
+              className={classes.buttonHoverShadow}
+            >
+              Practice
+            </Button>
+          </Link>
+        </Center>
       </Group>
       <Group h="20%" w="100%" gap="xs" grow>
-        {Object.entries(lessons).map(([lesson, completed]) => (
-          <Box key={lesson} bg={completed ? "green" : "gray"} h="100%"></Box>
+        {lessons.map((lesson, index) => (
+          <Box
+            key={index}
+            bg={completedLessons.includes(lesson) ? "green" : "gray"}
+            h="100%"
+            style={{
+              borderRadius:
+                index === 0
+                  ? "0 0 0 var(--mantine-radius-md)" // Bottom left box
+                  : index === lessons.length - 1
+                  ? "0 0 var(--mantine-radius-md) 0" // Bottom right box
+                  : "0", // Middle boxes
+            }}
+          ></Box>
         ))}
       </Group>
     </Paper>

@@ -1,0 +1,6 @@
+.buttonHoverShadow {
+  transition: box-shadow 0.25s;
+}
+.buttonHoverShadow:hover {
+  box-shadow: 0px 0px 10px rgba(108, 177, 198, 0.9);
+}
