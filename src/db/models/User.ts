@@ -131,6 +131,6 @@ userSchema.methods.completeLessons = function (this: IUser, courseId: string, le
     enrollment.completedLessons = lessons;
 }
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.models?.User || mongoose.model<IUser>("User", userSchema);
 
 export default User;
