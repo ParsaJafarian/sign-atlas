@@ -10,10 +10,39 @@ import {
 } from "@mantine/core";
 import classes from "./AuthenticationImage.module.css";
 import Link from "next/link";
+import { useForm } from "@mantine/form";
+import { useRouter } from "next/navigation";
 
 export function AuthenticationImage({ isLogin }: { isLogin: boolean }) {
+  const router = useRouter();
+
+  const form = useForm({
+    initialValues: {
+      email: '',
+      name: '',
+      password: '',
+    },
+
+    validate: {
+      email: (val) => (/^\S+@\S+$/.test(val) ? null : 'Invalid email'),
+      password: (val) => (val.length <= 6 ? 'Password should include at least 6 characters' : null),
+    },
+  });
+
+  const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    await fetch("/api/users", {
+      method: "POST",
+      body: JSON.stringify(form.values),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    router.push("/");
+  };
+
   return (
-    <div className={classes.wrapper}>
+    <form method="post" onSubmit={handleSignup} className={classes.wrapper}>
       <Paper className={classes.form} radius={0} p={30}>
         <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
           {isLogin ? "Log in to Sign Atlas!" : "Sign up to Sign Atlas"}
@@ -60,6 +89,6 @@ export function AuthenticationImage({ isLogin }: { isLogin: boolean }) {
           </Anchor>
         </Text>
       </Paper>
-    </div>
+    </form>
   );
 }
