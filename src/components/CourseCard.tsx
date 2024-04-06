@@ -1,4 +1,13 @@
-import { Box, Button, Center, Group, Paper, Text, Title } from "@mantine/core";
+import {
+  Box,
+  Button,
+  Center,
+  Group,
+  Paper,
+  Progress,
+  Text,
+  Title,
+} from "@mantine/core";
 import { IconBrain } from "@tabler/icons-react";
 import classes from "./CourseCard.module.css";
 import Link from "next/link";
@@ -31,7 +40,7 @@ export default function CourseCard({
             <Button
               size="lg"
               variant="gradient"
-              gradient={{ from: "pink", to: "cyan", deg: 90 }}
+              gradient={{ from: "blue", to: "cyan", deg: 90 }}
               className={classes.buttonHoverShadow}
             >
               Start
@@ -42,7 +51,7 @@ export default function CourseCard({
               size="lg"
               rightSection={<IconBrain size={14} />}
               variant="gradient"
-              gradient={{ from: "cyan", to: "grape", deg: 90 }}
+              gradient={{ from: 'cyan', to: 'green', deg: 90 }}
               className={classes.buttonHoverShadow}
             >
               Practice
@@ -51,21 +60,22 @@ export default function CourseCard({
         </Center>
       </Group>
       <Group h="20%" w="100%" gap="xs" grow>
-        {lessons.map((lesson, index) => (
+        {/* {lessons.map((lesson, index) => (
           <Box
-            key={index}
-            bg={completedLessons.includes(lesson) ? "green" : "gray"}
-            h="100%"
-            style={{
-              borderRadius:
-                index === 0
-                  ? "0 0 0 var(--mantine-radius-md)" // Bottom left box
-                  : index === lessons.length - 1
-                  ? "0 0 var(--mantine-radius-md) 0" // Bottom right box
-                  : "0", // Middle boxes
-            }}
+          key={index}
+          bg={completedLessons.includes(lesson) ? "green" : "gray"}
+          h="100%"
+          style={{
+            borderRadius: "5px 5px 0px 0px"
+          }}
           ></Box>
-        ))}
+        ))} */}
+        <Progress
+          value={(completedLessons.length / lessons.length) * 100}
+          mt="md"
+          size="lg"
+          radius="xl"
+        />
       </Group>
     </Paper>
   );

@@ -49,7 +49,7 @@ export default function Page() {
 
   let lastCategory: string = "";
   let count = 0;
-  const nConfident = 20;
+  const nConfident = 10;
   function getCategory(category: string) {
     // "Unsure" means there is a hand but below threshold
     // letters are letters

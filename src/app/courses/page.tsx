@@ -76,7 +76,6 @@ export default function Courses() {
       <UserButton />
       <Box mt="lg" h="60%">
         <Title>My courses</Title>
-        <ProgressCard mt="md" />
         <Card radius="md" px="xl" mt="md" withBorder bg="white">
           <Stack gap="xl" justify="center">
             {mockData.map((course, index) => (
@@ -86,7 +85,7 @@ export default function Courses() {
                 description={course.description}
                 lessons={course.lessons}
                 completedLessons={course.completedLessons}
-                courseEndpoint={course.courseEndpoint}
+                courseEndpoint={"a-m"}
                 testEndpoint={course.testEndpoint}
               />
             ))}
@@ -97,7 +96,7 @@ export default function Courses() {
                   h={"100%"}
                   // p={50}
                   variant="gradient"
-                  gradient={{ from: "pink", to: "orange", deg: 90 }}
+                  gradient={{ from: "blue", to: "cyan", deg: 90 }}
                 >
                   <Title>Extra ✨ Spell Common Colors</Title>
                 </Button>
