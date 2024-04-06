@@ -6,6 +6,7 @@ import { CameraControls } from "@react-three/drei";
 import { Paper } from "@mantine/core";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useRef } from "react";
+import ASL3DHand from "@/components/ASL3DHand";
 
 const Scene = ({ letter }: { letter: string }) => {
   const stl: any = useLoader(GLTFLoader, `${letter}.gltf`);
@@ -27,29 +28,7 @@ export default function Three() {
   return (
     <Paper h="90vh">
       <Canvas camera={{ fov: 90 }}>
-        <Scene letter={"h"} />
-        <CameraControls
-          ref={(ref) => {
-            cameraRef.current = ref;
-            if (ref) {
-              initLocAndRot();
-            }
-          }}
-        />
-        <ambientLight intensity={Math.PI / 2} />
-        <spotLight
-          position={[0, 30, -30]}
-          angle={0.15}
-          penumbra={1}
-          decay={0}
-          intensity={Math.PI}
-        />
-        <pointLight position={[30, 0, 30]} decay={0} intensity={Math.PI} />
-        <pointLight position={[-30, 0, -30]} decay={0} intensity={Math.PI} />
-        <pointLight position={[30, 0, -30]} decay={0} intensity={Math.PI} />
-        <pointLight position={[-30, 0, 30]} decay={0} intensity={Math.PI} />
-        {/* This box is actually at the 0,0,0 position */}
-        {/* <Box position={[0, 0, 0]} /> */}
+        <ASL3DHand letter="k" />
       </Canvas>
     </Paper>
   );
