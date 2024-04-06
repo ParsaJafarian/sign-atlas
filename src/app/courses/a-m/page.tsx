@@ -51,14 +51,14 @@ export default function CourseId({ params }: { params: { id: string } }) {
   return (
     <Container h="89vh" maw={"80%"}>
       <Flex
-        pt="5rem"
+        pt="50px"
         mah={"100%"}
         // gap={rem(100)}
         justify="center"
-        align="flex-start"
+        align="stretch"
         direction="row"
         wrap="nowrap"
-        style={{ paddingTop: "30px", overflow: "hidden" }}
+        style={{ overflow: "hidden" }}
       >
         <Box pr="5rem">
           <Timeline
@@ -85,11 +85,11 @@ export default function CourseId({ params }: { params: { id: string } }) {
             ))}
           </Timeline>
         </Box>
-        <Container miw={"30%"}>
+        <Container fluid>
           <Flex
-            mah={"100%"}
+            h={"100%"}
             // gap="md"
-            justify="flex-start"
+            justify="center"
             align="center"
             direction="column"
             wrap="nowrap"
@@ -99,7 +99,6 @@ export default function CourseId({ params }: { params: { id: string } }) {
               fw={900}
               variant="gradient"
               gradient={{ from: "grape", to: "pink", deg: 90 }}
-              style={{ flex: "1 1 auto" }}
             >
               Course A-M
             </Text>
@@ -108,17 +107,16 @@ export default function CourseId({ params }: { params: { id: string } }) {
               fw={900}
               variant="gradient"
               gradient={{ from: "pink", to: "grape", deg: 90 }}
-              style={{ flex: "1 1 auto" }}
             >
               Lesson {lessons[active]}
             </Text>
-            <Image
-              fit="contain"
+            <Box style={{ flexGrow: 1 }}>Placeholder for {lessons[active]} 3D Hand model</Box>
+            {/* <Image
               radius="md"
-              height={50}
               src="https://upload.wikimedia.org/wikipedia/commons/2/27/Sign_language_A.svg"
               alt="A in American Sign Language"
-            />
+              style={{ flex: "1 0 auto" }}
+            /> */}
             <Flex
               gap="xs"
               justify="center"
@@ -126,7 +124,6 @@ export default function CourseId({ params }: { params: { id: string } }) {
               direction="row"
               wrap="wrap"
               mt="xl"
-              style={{ flex: "1 1 auto" }}
             >
               <Button variant="default" onClick={prevStep}>
                 Back

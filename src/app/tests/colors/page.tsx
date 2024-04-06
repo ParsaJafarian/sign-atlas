@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import ASLTranslator from "@/components/ASLTranslator";
@@ -20,31 +21,32 @@ import { IconCheck } from "@tabler/icons-react";
 import Link from "next/link";
 
 export default function Page() {
-  const startLetter = "A";
-  const endLetter = "M";
   const lessons = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
+    "RED",
+    "BLUE",
+    "GREEN",
+    "YELLOW",
+    "ORANGE",
+    "PURPLE",
+    "PINK",
+    "BROWN",
+    "BLACK",
+    "WHITE",
+    "GRAY",
+    "BEIGE",
   ];
   const [completedLessons, setCompletedLessons] = useState<string[]>([]);
   const [active, setActive] = useState(0);
 
   const [sentence, setSentence] = useState<string>("");
-  const [currentLetter, setCurrentLetter] = useState<string>(startLetter);
+  const [currentWord, setCurrentWord] = useState<string>(lessons[0]);
   const [isWrong, setIsWrong] = useState(false);
   const [isCourseFinished, setIsCourseFinished] = useState(false);
   const inTransition = useRef(false);
+  const [shakeCorrect, setShakeCorrect] = useState(false);
+  const sentenceWord = useRef("");
+  const currentWordWord = useRef(lessons[0]);
+
   let lastCategory: string = "";
   let count = 0;
   const nConfident = 20;
@@ -55,14 +57,34 @@ export default function Page() {
     if (category === lastCategory) count += 1;
     else count = 1;
     lastCategory = category;
-
-    if (count > nConfident && category !== "None" && category !== "Unsure") {
+    if (
+      count > nConfident &&
+      category !== "None" &&
+      category !== "Unsure" &&
+      !inTransition.current
+    ) {
       count = 0;
-      // setSentence((prevSentence) => {
-      //   return prevSentence + category;
-      // });
-      if (!inTransition.current) {
+      if (
+        sentenceWord.current === "" ||
+        (sentenceWord.current.length === 1 &&
+          sentenceWord.current[0] !== currentWordWord.current[0])
+      ) {
         setSentence(category);
+        sentenceWord.current = category;
+      } else if (
+        sentenceWord.current[sentenceWord.current.length - 1] ===
+        currentWordWord.current[sentenceWord.current.length - 1]
+      ) {
+        setSentence((prevSentence) => {
+          sentenceWord.current = prevSentence + category;
+          return prevSentence + category;
+        });
+      } else {
+        setSentence((prevSentence) => {
+          sentenceWord.current =
+            prevSentence.slice(0, prevSentence.length - 1) + category;
+          return prevSentence.slice(0, prevSentence.length - 1) + category;
+        });
       }
     } else if (count > nConfident) {
       count = 0;
@@ -73,7 +95,7 @@ export default function Page() {
 
   useEffect(() => {
     if (isCourseFinished || inTransition.current || sentence === "") return;
-    if (sentence !== currentLetter) {
+    if (sentence[sentence.length - 1] !== currentWord[sentence.length - 1]) {
       setIsWrong(true); // Set isWrong to true if sentence is wrong
       const timeout = setTimeout(() => {
         setIsWrong(false); // Reset isWrong after some time
@@ -82,41 +104,49 @@ export default function Page() {
       return () => clearTimeout(timeout); // Cleanup function to clear timeout
     } else {
       inTransition.current = true;
-      setCompletedLessons((oldCompletedLessons) => [
-        ...oldCompletedLessons,
-        currentLetter,
-      ]);
-      setActive((old) => old + 1);
-      const timeout = setTimeout(() => {
-        if (currentLetter === endLetter) {
-          const timeout = setTimeout(() => {
-            setIsCourseFinished(true);
-            finishedCourse();
-          }, 1500); // Adjust timeout duration as needed
-          return () => clearTimeout(timeout); // Cleanup function to clear timeout
+      setShakeCorrect(true);
+      if (currentWord === sentence) {
+        if (currentWord === lessons[lessons.length - 1]) {
+          inTransition.current = false;
+          setShakeCorrect(false);
+          setIsCourseFinished(true);
+          finishedCourse();
         }
+        const timeout = setTimeout(() => {
+          inTransition.current = false;
+          setShakeCorrect(false);
+          setCompletedLessons((oldCompletedLessons) => [
+            ...oldCompletedLessons,
+            currentWord,
+          ]);
+          setActive((old) => old + 1);
+          setSentence("");
+          sentenceWord.current = "";
+          setCurrentWord((prevLetter) => {
+            return lessons[lessons.indexOf(prevLetter) + 1];
+          });
+          currentWordWord.current = lessons[active + 1];
+        }, 1500); // Adjust timeout duration as needed
+        return () => clearTimeout(timeout); // Cleanup function to clear timeout
+      }
+      const timeout = setTimeout(() => {
         inTransition.current = false;
-        setSentence("");
-        setCurrentLetter((prevLetter) => {
-          const nextCharCode = prevLetter.charCodeAt(0) + 1;
-          if (nextCharCode <= 90) {
-            return String.fromCharCode(nextCharCode);
-          } else {
-            return "A";
-          }
-        });
+        setShakeCorrect(false);
       }, 1500); // Adjust timeout duration as needed
 
       return () => clearTimeout(timeout); // Cleanup function to clear timeout
     }
-  }, [sentence, currentLetter, isCourseFinished]);
+  }, [sentence, currentWord, isCourseFinished]);
 
   function restartCourse() {
     inTransition.current = false;
+    setShakeCorrect(false);
     setCompletedLessons([]);
     setActive(0);
     setSentence("");
-    setCurrentLetter(startLetter);
+    sentenceWord.current = "";
+    setCurrentWord(lessons[0]);
+    currentWordWord.current = lessons[0];
     setIsWrong(false);
     setIsCourseFinished(false);
   }
@@ -133,7 +163,7 @@ export default function Page() {
         wrap="nowrap"
         style={{ paddingTop: "30px", overflow: "hidden" }}
       >
-        <Box pr="5rem" style={{ overflow: "hidden" }}>
+        <Box pr="5rem">
           <Timeline
             active={active}
             bulletSize={24}
@@ -166,7 +196,7 @@ export default function Page() {
               variant="gradient"
               gradient={{ from: "red", to: "grape", deg: 90 }}
             >
-              Alphabet {startLetter}-{endLetter}
+              Common colors
             </Text>
           </Center>
           <Divider my="md" />
@@ -181,8 +211,8 @@ export default function Page() {
           {!isCourseFinished ? (
             <>
               <Center maw="100%" h={100}>
-                <Title>{currentLetter} </Title>
-                {sentence === currentLetter ? (
+                <Title>{currentWord} </Title>
+                {sentence === currentWord ? (
                   <IconCheck size={60} strokeWidth={3} color={"#40bf4e"} />
                 ) : undefined}
               </Center>
@@ -196,25 +226,28 @@ export default function Page() {
                   borderColor:
                     sentence === ""
                       ? undefined
-                      : sentence !== currentLetter
-                      ? "red"
-                      : "green",
+                      : sentence[sentence.length - 1] !==
+                          currentWord[sentence.length - 1]
+                        ? "red"
+                        : "green",
                   color:
                     sentence === ""
                       ? undefined
-                      : sentence !== currentLetter
-                      ? "red"
-                      : "green",
+                      : sentence[sentence.length - 1] !==
+                          currentWord[sentence.length - 1]
+                        ? "red"
+                        : "green",
                   textDecoration: "underline",
                 }}
                 className={
                   sentence === ""
                     ? undefined
                     : isWrong
-                    ? styles.shakeWrong
-                    : sentence === currentLetter
-                    ? styles.shakeCorrect
-                    : undefined
+                      ? styles.shakeWrong
+                      : sentence[sentence.length - 1] ===
+                            currentWord[sentence.length - 1] && shakeCorrect
+                        ? styles.shakeCorrect
+                        : undefined
                 }
               >
                 <Text
@@ -239,8 +272,8 @@ export default function Page() {
                       variant="gradient"
                       gradient={{ from: "grape", to: "blue", deg: 0 }}
                     >
-                      Good job! You finished the knowledge test {startLetter}-
-                      {endLetter}.
+                      Good job! You finished the knowledge test about common
+                      colors.
                     </Text>
                   </Center>
                   <Center>
