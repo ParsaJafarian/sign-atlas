@@ -1,13 +1,14 @@
-import { DetailedEnrollment, IUser } from "@/db/models/User";
+import { IUser } from "@/db/models/User";
 import { Dispatch, SetStateAction } from "react";
 import { getDataFrom } from "./fetches";
+import { ICourse } from "@/db/models/Course";
 
 const baseUrl = process.env.HOST || "http://localhost:3000";
 
-export function getCourses(setStateFunc: Dispatch<SetStateAction<DetailedEnrollment[]>>) {
+export function getCourses(setStateFunc: Dispatch<SetStateAction<ICourse[]>>) {
     async function fetchCourses() {
-        const coursesData = await getDataFrom(`${baseUrl}/api/courses`);
-        setStateFunc(coursesData as DetailedEnrollment[]);
+        const { courses } = await getDataFrom(`${baseUrl}/api/courses`);
+        setStateFunc(courses as ICourse[]);
     }
 
     fetchCourses().catch(() => {

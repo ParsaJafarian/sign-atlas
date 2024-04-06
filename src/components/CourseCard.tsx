@@ -6,7 +6,6 @@ interface CourseCardProps {
   title: string;
   description: string;
   lessons: string[];
-  completedLessons: string[];
   courseEndpoint: string;
   testEndpoint: string;
 }
@@ -15,10 +14,12 @@ export default function CourseCard({
   title,
   description,
   lessons,
-  completedLessons,
   courseEndpoint,
   testEndpoint,
 }: CourseCardProps) {
+
+  const completedLessons = [lessons[0], lessons[1]];
+
   return (
     <Paper h="130px" radius="md" shadow="xl" py={0}>
       <Group h="80%" justify="space-between" px="50px">
