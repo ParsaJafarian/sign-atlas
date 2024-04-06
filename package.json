@@ -13,6 +13,7 @@
     "@mantine/form": "^7.7.1",
     "@mantine/hooks": "^7.7.1",
     "@mantinex/mantine-logo": "^1.0.1",
+    "@mediapipe/tasks-vision": "^0.10.9-rc.20231209",
     "@tabler/icons-react": "^3.1.0",
     "mongoose": "^8.3.0",
     "next": "14.1.4",
