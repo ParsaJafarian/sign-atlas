@@ -4,10 +4,21 @@ import { UserButton } from "@/components/UserButton";
 import { Container, Title, Box, Stack, Card } from "@mantine/core";
 
 export default function Courses() {
-  const mockData = [
+
+  interface ModuleList {
+    [key: string]: boolean;
+  }
+
+  interface Course {
+    title: string;
+    description: string;
+    modules: ModuleList;
+  }
+
+  const mockData: Course[] = [
     {
-      title: "From A to J",
-      description: "Learn the American Sign Language from A to J!",
+      title: "From A to M",
+      description: "Learn the American Sign Language from A to M!",
       modules: {
         a: false,
         b: false,
@@ -19,12 +30,28 @@ export default function Courses() {
         h: false,
         i: false,
         j: false,
+        k: false,
+        l: false,
+        m: false,
       },
     },
     {
-      title: "From K to Z",
+      title: "From N to Z",
       description: "Continue learning the American Sign Language from K to Z!",
-      modules: { k: false, m: true, n: false, o: false },
+      modules: {
+        n: false,
+        o: false,
+        p: false,
+        q: false,
+        r: false,
+        t: false,
+        u: false,
+        v: false,
+        w: false,
+        x: false,
+        y: false,
+        z: false,
+      },
     },
   ];
 
