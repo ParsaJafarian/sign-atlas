@@ -23,7 +23,6 @@ export default function Courses() {
 
   return (
     <Container h="100vh" size="lg">
-      <UserButton />
       <Box mt="lg" h="60%">
         <Title>My courses</Title>
         <Card radius="md" px="xl" mt="md" withBorder bg="blue">
