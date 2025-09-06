@@ -14,9 +14,12 @@ import {
   Center,
   Container,
   rem,
+  Paper,
 } from "@mantine/core";
 import { IconCheck } from "@tabler/icons-react";
 import ASLTranslator from "@/components/ASLTranslator";
+import ASL3DHand from "@/components/ASL3DHand";
+import { Canvas } from "@react-three/fiber";
 
 export default function CourseId({ params }: { params: { id: string } }) {
   const [active, setActive] = useState(0);
@@ -85,34 +88,43 @@ export default function CourseId({ params }: { params: { id: string } }) {
             ))}
           </Timeline>
         </Box>
-        <Container fluid>
+        <Container fluid m={0} p={0} flex={1}>
           <Flex
             h={"100%"}
             // gap="md"
             justify="center"
-            align="center"
+            align="stretch"
             direction="column"
             wrap="nowrap"
           >
-            <Text
-              size={rem(30)}
-              fw={900}
-              variant="gradient"
-              gradient={{ from: "grape", to: "pink", deg: 90 }}
-            >
-              Course A-M
-            </Text>
-            <Text
-              size={rem(30)}
-              fw={900}
-              variant="gradient"
-              gradient={{ from: "pink", to: "grape", deg: 90 }}
-            >
-              Lesson {lessons[active]}
-            </Text>
-            <Box style={{ flexGrow: 1 }}>
-              Placeholder for {lessons[active]} 3D Hand model
-            </Box>
+            <Center>
+              <Text
+                size={rem(30)}
+                fw={900}
+                variant="gradient"
+                gradient={{ from: "grape", to: "pink", deg: 90 }}
+              >
+                Course A-M
+              </Text>
+            </Center>
+            <Center>
+              <Text
+                size={rem(30)}
+                fw={900}
+                variant="gradient"
+                gradient={{ from: "pink", to: "grape", deg: 90 }}
+              >
+                Lesson {lessons[active]}
+              </Text>
+            </Center>
+            <Center style={{ flexGrow: 1 }} m={0} p={0} bg="red">
+              <Paper h={"100%"} w={"100%"}>
+                <Canvas camera={{ fov: 90 }}>
+                  <ASL3DHand letter={lessons[active]} />
+                </Canvas>
+              </Paper>
+              {/* Placeholder for {lessons[active]} 3D Hand model */}
+            </Center>
             {/* <Image
               radius="md"
               src="https://upload.wikimedia.org/wikipedia/commons/2/27/Sign_language_A.svg"
@@ -134,8 +146,8 @@ export default function CourseId({ params }: { params: { id: string } }) {
             </Flex>
           </Flex>
         </Container>
-        <Container>
-          <ASLTranslator />
+        <Container m={0} p={0}>
+          <ASLTranslator  />
         </Container>
       </Flex>
     </Container>

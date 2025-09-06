@@ -13,6 +13,7 @@ import {
 } from "@mantine/core";
 import { IconCheck } from "@tabler/icons-react";
 import classes from "./HeroBullets.module.css";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -53,23 +54,25 @@ export default function Home() {
             }
           >
             <List.Item>
-              <b>Visualizations in 3D </b> – Explore sign language using
-              immersive 3D hand models
+              <b>Visualizations in 3D </b> - Experience ASL like never before
+              with immersive 3D visualizations.
             </List.Item>
             <List.Item>
-              <b>Computer vision</b> – Practice with real-time gesture
-              recognition any project
+              <b>Computer vision</b> - Harness the power of computer vision to
+              learn ASL with real-time feedback.
             </List.Item>
             <List.Item>
-              <b>Multiple courses and levels </b> – Personalized learning
-              experience for all levels keyboard
+              <b>Multiple courses and levels </b> - Explore a *range of courses
+              and levels tailored to your learning journey in ASL.
             </List.Item>
           </List>
 
           <Group mt={50}>
-            <Button radius="xl" size="md" className={classes.control}>
-              Get started
-            </Button>
+            <Link href="/courses">
+              <Button radius="xl" size="md" className={classes.control} >
+                Get started
+              </Button>
+            </Link >
           </Group>
         </div>
         <Image

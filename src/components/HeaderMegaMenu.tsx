@@ -8,6 +8,7 @@ import {
   Burger,
   Drawer,
   ScrollArea,
+  Image,
   rem,
   Image,
 } from "@mantine/core";
@@ -25,7 +26,7 @@ export function HeaderMegaMenu() {
     <Box>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
-          <Image src="logo.png" h="100%" alt="logo" />
+          <Image src="/logo.png" h="100%" alt="logo" />
 
           <Group h="100%" gap={0} visibleFrom="sm">
             <Link href="/" className={classes.link}>

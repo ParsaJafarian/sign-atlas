@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { Card, Image, Text, Group, RingProgress } from "@mantine/core";
+import { Card, Image, Text, Group, RingProgress, rem } from "@mantine/core";
 import classes from "./CardWithStats.module.css";
 
 import {
@@ -199,7 +199,7 @@ export default function ASLTranslator({
           <Text size="xs" c="dimmed">
             GestureRecognizer
           </Text>
-          <Text fw={500} size="sm">
+          <Text size={rem(20)} fw={500}>
             {gesture}
           </Text>
         </div>

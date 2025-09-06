@@ -1,6 +1,7 @@
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, ThreeElements } from "@react-three/fiber";
 import { useLoader } from "@react-three/fiber";
 import { CameraControls } from "@react-three/drei";
+import { Paper } from "@mantine/core";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Suspense, useRef } from "react";
 import { Group } from "three";
@@ -15,7 +16,7 @@ export default function ASL3DHand({ letter }: any) {
     return (
       <primitive
         object={stl.scene}
-        scale={0.3}
+        scale={0.2}
         position={[0, 0, 0]}
         dispose={null}
       />
@@ -36,7 +37,9 @@ export default function ASL3DHand({ letter }: any) {
 
   return (
     <Suspense fallback={null}>
-      <Scene letter={letter} />
+      <group ref={handRef} dispose={null}>
+        <Scene letter={letter.toLowerCase()} />
+      </group>
       <CameraControls
         ref={(ref) => {
           cameraRef.current = ref;
