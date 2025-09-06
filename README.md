@@ -14,8 +14,8 @@ An interactive web platform for learning American Sign Language (ASL) using real
 
 ### **Visual Demo**
 
-![](./assets/gallery.jpg)
-![](./assets/gallery1.jpg)
+![](https://raw.githubusercontent.com/ParsaJafarian/sign-atlas/refs/heads/main/assets/gallery.jpg)
+![](https://raw.githubusercontent.com/ParsaJafarian/sign-atlas/refs/heads/main/assets/gallery1.jpg)
 
 ### **Table of Contents**
 
